@@ -1,0 +1,370 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BlueSkyApp.Resources.Styles;
+
+partial class ApplicationTheme
+{
+    public static class Colors
+    {
+        public static class Global
+        {
+            public static class Light
+            {
+                public static Color White { get; } = Color.FromArgb("#FFFFFF");
+                public static Color Grey10 { get; } = Color.FromArgb("#F4F6F7");
+                public static Color Grey20 { get; } = Color.FromArgb("#E6E9EB");
+                public static Color Grey30 { get; } = Color.FromArgb("#DADDDE");
+                public static Color Grey40 { get; } = Color.FromArgb("#C1C4C6");
+                public static Color Grey50 { get; } = Color.FromArgb("#898D8F");
+                public static Color Grey60 { get; } = Color.FromArgb("#6E7375");
+                public static Color Grey70 { get; } = Color.FromArgb("#53575A");
+                public static Color Grey80 { get; } = Color.FromArgb("#2F3133");
+                public static Color Grey90 { get; } = Color.FromArgb("#1F2224");
+                public static Color Grey100 { get; } = Color.FromArgb("#131214");
+                public static Color Brand10 { get; } = Color.FromArgb("#F6F5FF");
+                public static Color Brand20 { get; } = Color.FromArgb("#F0EDFF");
+                public static Color Brand30 { get; } = Color.FromArgb("#DBD4FF");
+                public static Color Brand40 { get; } = Color.FromArgb("#B4A6FF");
+                public static Color Brand50 { get; } = Color.FromArgb("#907AFF");
+                public static Color Brand60 { get; } = Color.FromArgb("#7257FF");
+                public static Color Brand70 { get; } = Color.FromArgb("#5336E2");
+                public static Color Brand80 { get; } = Color.FromArgb("#34228F");
+                public static Color Brand90 { get; } = Color.FromArgb("#291F61");
+                public static Color Brand100 { get; } = Color.FromArgb("#130D33");
+                public static Color Green10 { get; } = Color.FromArgb("#E8FAF0");
+                public static Color Green20 { get; } = Color.FromArgb("#D7F5E5");
+                public static Color Green30 { get; } = Color.FromArgb("#9BEBBF");
+                public static Color Green40 { get; } = Color.FromArgb("#51C285");
+                public static Color Green50 { get; } = Color.FromArgb("#23A15D");
+                public static Color Green60 { get; } = Color.FromArgb("#008557");
+                public static Color Green70 { get; } = Color.FromArgb("#006341");
+                public static Color Green80 { get; } = Color.FromArgb("#0D4F2B");
+                public static Color Green90 { get; } = Color.FromArgb("#05381D");
+                public static Color Green100 { get; } = Color.FromArgb("#021F10");
+                public static Color Yellow10 { get; } = Color.FromArgb("#FFF9E6");
+                public static Color Yellow20 { get; } = Color.FromArgb("#FFEFB3");
+                public static Color Yellow30 { get; } = Color.FromArgb("#FFD84D");
+                public static Color Yellow40 { get; } = Color.FromArgb("#ED9B16");
+                public static Color Yellow50 { get; } = Color.FromArgb("#D67507");
+                public static Color Yellow60 { get; } = Color.FromArgb("#B26205");
+                public static Color Yellow70 { get; } = Color.FromArgb("#824B0D");
+                public static Color Yellow80 { get; } = Color.FromArgb("#663C0C");
+                public static Color Yellow90 { get; } = Color.FromArgb("#4D2B05");
+                public static Color Yellow100 { get; } = Color.FromArgb("#331C03");
+                public static Color Red10 { get; } = Color.FromArgb("#FFF3F0");
+                public static Color Red20 { get; } = Color.FromArgb("#FFE9E3");
+                public static Color Red30 { get; } = Color.FromArgb("#FFCEC2");
+                public static Color Red40 { get; } = Color.FromArgb("#FF9175");
+                public static Color Red50 { get; } = Color.FromArgb("#FF5226");
+                public static Color Red60 { get; } = Color.FromArgb("#DB340B");
+                public static Color Red70 { get; } = Color.FromArgb("#AD1D00");
+                public static Color Red80 { get; } = Color.FromArgb("#8A1700");
+                public static Color Red90 { get; } = Color.FromArgb("#611000");
+                public static Color Red100 { get; } = Color.FromArgb("#290800");
+                public static Color Blue10 { get; } = Color.FromArgb("#F2F7FF");
+                public static Color Blue20 { get; } = Color.FromArgb("#E5F0FF");
+                public static Color Blue30 { get; } = Color.FromArgb("#C2DCFF");
+                public static Color Blue40 { get; } = Color.FromArgb("#75B1FF");
+                public static Color Blue50 { get; } = Color.FromArgb("#308AFF");
+                public static Color Blue60 { get; } = Color.FromArgb("#0A69FA");
+                public static Color Blue70 { get; } = Color.FromArgb("#0050C7");
+                public static Color Blue80 { get; } = Color.FromArgb("#003C94");
+                public static Color Blue90 { get; } = Color.FromArgb("#042961");
+                public static Color Blue100 { get; } = Color.FromArgb("#021026");
+            }
+
+            public static class Dark
+            {
+                public static Color White { get; } = Color.FromArgb("#FFFFFF");
+                public static Color Grey10 { get; } = Color.FromArgb("#F4F6F7");
+                public static Color Grey20 { get; } = Color.FromArgb("#E6E9EB");
+                public static Color Grey30 { get; } = Color.FromArgb("#DADDDE");
+                public static Color Grey40 { get; } = Color.FromArgb("#C1C4C6");
+                public static Color Grey50 { get; } = Color.FromArgb("#898D8F");
+                public static Color Grey60 { get; } = Color.FromArgb("#6E7375");
+                public static Color Grey70 { get; } = Color.FromArgb("#53575A");
+                public static Color Grey80 { get; } = Color.FromArgb("#2F3133");
+                public static Color Grey90 { get; } = Color.FromArgb("#1F2224");
+                public static Color Grey100 { get; } = Color.FromArgb("#131214");
+                public static Color Brand10 { get; } = Color.FromArgb("#F6F5FF");
+                public static Color Brand20 { get; } = Color.FromArgb("#F0EDFF");
+                public static Color Brand30 { get; } = Color.FromArgb("#DBD4FF");
+                public static Color Brand40 { get; } = Color.FromArgb("#B4A6FF");
+                public static Color Brand50 { get; } = Color.FromArgb("#907AFF");
+                public static Color Brand60 { get; } = Color.FromArgb("#7257FF");
+                public static Color Brand70 { get; } = Color.FromArgb("#5336E2");
+                public static Color Brand80 { get; } = Color.FromArgb("#34228F");
+                public static Color Brand90 { get; } = Color.FromArgb("#291F61");
+                public static Color Brand100 { get; } = Color.FromArgb("#130D33");
+                public static Color Green10 { get; } = Color.FromArgb("#E8FAF0");
+                public static Color Green20 { get; } = Color.FromArgb("#D7F5E5");
+                public static Color Green30 { get; } = Color.FromArgb("#9BEBBF");
+                public static Color Green40 { get; } = Color.FromArgb("#51C285");
+                public static Color Green50 { get; } = Color.FromArgb("#23A15D");
+                public static Color Green60 { get; } = Color.FromArgb("#008557");
+                public static Color Green70 { get; } = Color.FromArgb("#006341");
+                public static Color Green80 { get; } = Color.FromArgb("#0D4F2B");
+                public static Color Green90 { get; } = Color.FromArgb("#05381D");
+                public static Color Green100 { get; } = Color.FromArgb("#021F10");
+                public static Color Yellow10 { get; } = Color.FromArgb("#FFF9E6");
+                public static Color Yellow20 { get; } = Color.FromArgb("#FFEFB3");
+                public static Color Yellow30 { get; } = Color.FromArgb("#FFD84D");
+                public static Color Yellow40 { get; } = Color.FromArgb("#ED9B16");
+                public static Color Yellow50 { get; } = Color.FromArgb("#D67507");
+                public static Color Yellow60 { get; } = Color.FromArgb("#B26205");
+                public static Color Yellow70 { get; } = Color.FromArgb("#824B0D");
+                public static Color Yellow80 { get; } = Color.FromArgb("#663C0C");
+                public static Color Yellow90 { get; } = Color.FromArgb("#4D2B05");
+                public static Color Yellow100 { get; } = Color.FromArgb("#331C03");
+                public static Color Red10 { get; } = Color.FromArgb("#FFF3F0");
+                public static Color Red20 { get; } = Color.FromArgb("#FFE9E3");
+                public static Color Red30 { get; } = Color.FromArgb("#FFCEC2");
+                public static Color Red40 { get; } = Color.FromArgb("#FF9175");
+                public static Color Red50 { get; } = Color.FromArgb("#FF5226");
+                public static Color Red60 { get; } = Color.FromArgb("#DB340B");
+                public static Color Red70 { get; } = Color.FromArgb("#AD1D00");
+                public static Color Red80 { get; } = Color.FromArgb("#8A1700");
+                public static Color Red90 { get; } = Color.FromArgb("#611000");
+                public static Color Red100 { get; } = Color.FromArgb("#290800");
+                public static Color Blue10 { get; } = Color.FromArgb("#F2F7FF");
+                public static Color Blue20 { get; } = Color.FromArgb("#E5F0FF");
+                public static Color Blue30 { get; } = Color.FromArgb("#C2DCFF");
+                public static Color Blue40 { get; } = Color.FromArgb("#75B1FF");
+                public static Color Blue50 { get; } = Color.FromArgb("#308AFF");
+                public static Color Blue60 { get; } = Color.FromArgb("#0A69FA");
+                public static Color Blue70 { get; } = Color.FromArgb("#0050C7");
+                public static Color Blue80 { get; } = Color.FromArgb("#003C94");
+                public static Color Blue90 { get; } = Color.FromArgb("#042961");
+                public static Color Blue100 { get; } = Color.FromArgb("#021026");
+            }
+
+            public static Color White => IsLightTheme ? Light.White : Dark.White;
+            public static Color Grey10 => IsLightTheme ? Light.Grey10 : Dark.Grey10;
+            public static Color Grey20 => IsLightTheme ? Light.Grey20 : Dark.Grey20;
+            public static Color Grey30 => IsLightTheme ? Light.Grey30 : Dark.Grey30;
+            public static Color Grey40 => IsLightTheme ? Light.Grey40 : Dark.Grey40;
+            public static Color Grey50 => IsLightTheme ? Light.Grey50 : Dark.Grey50;
+            public static Color Grey60 => IsLightTheme ? Light.Grey60 : Dark.Grey60;
+            public static Color Grey70 => IsLightTheme ? Light.Grey70 : Dark.Grey70;
+            public static Color Grey80 => IsLightTheme ? Light.Grey80 : Dark.Grey80;
+            public static Color Grey90 => IsLightTheme ? Light.Grey90 : Dark.Grey90;
+            public static Color Grey100 => IsLightTheme ? Light.Grey100 : Dark.Grey100;
+            public static Color Brand10 => IsLightTheme ? Light.Brand10 : Dark.Brand10;
+            public static Color Brand20 => IsLightTheme ? Light.Brand20 : Dark.Brand20;
+            public static Color Brand30 => IsLightTheme ? Light.Brand30 : Dark.Brand30;
+            public static Color Brand40 => IsLightTheme ? Light.Brand40 : Dark.Brand40;
+            public static Color Brand50 => IsLightTheme ? Light.Brand50 : Dark.Brand50;
+            public static Color Brand60 => IsLightTheme ? Light.Brand60 : Dark.Brand60;
+            public static Color Brand70 => IsLightTheme ? Light.Brand70 : Dark.Brand70;
+            public static Color Brand80 => IsLightTheme ? Light.Brand80 : Dark.Brand80;
+            public static Color Brand90 => IsLightTheme ? Light.Brand90 : Dark.Brand90;
+            public static Color Brand100 => IsLightTheme ? Light.Brand100 : Dark.Brand100;
+            public static Color Green10 => IsLightTheme ? Light.Green10 : Dark.Green10;
+            public static Color Green20 => IsLightTheme ? Light.Green20 : Dark.Green20;
+            public static Color Green30 => IsLightTheme ? Light.Green30 : Dark.Green30;
+            public static Color Green40 => IsLightTheme ? Light.Green40 : Dark.Green40;
+            public static Color Green50 => IsLightTheme ? Light.Green50 : Dark.Green50;
+            public static Color Green60 => IsLightTheme ? Light.Green60 : Dark.Green60;
+            public static Color Green70 => IsLightTheme ? Light.Green70 : Dark.Green70;
+            public static Color Green80 => IsLightTheme ? Light.Green80 : Dark.Green80;
+            public static Color Green90 => IsLightTheme ? Light.Green90 : Dark.Green90;
+            public static Color Green100 => IsLightTheme ? Light.Green100 : Dark.Green100;
+            public static Color Yellow10 => IsLightTheme ? Light.Yellow10 : Dark.Yellow10;
+            public static Color Yellow20 => IsLightTheme ? Light.Yellow20 : Dark.Yellow20;
+            public static Color Yellow30 => IsLightTheme ? Light.Yellow30 : Dark.Yellow30;
+            public static Color Yellow40 => IsLightTheme ? Light.Yellow40 : Dark.Yellow40;
+            public static Color Yellow50 => IsLightTheme ? Light.Yellow50 : Dark.Yellow50;
+            public static Color Yellow60 => IsLightTheme ? Light.Yellow60 : Dark.Yellow60;
+            public static Color Yellow70 => IsLightTheme ? Light.Yellow70 : Dark.Yellow70;
+            public static Color Yellow80 => IsLightTheme ? Light.Yellow80 : Dark.Yellow80;
+            public static Color Yellow90 => IsLightTheme ? Light.Yellow90 : Dark.Yellow90;
+            public static Color Yellow100 => IsLightTheme ? Light.Yellow100 : Dark.Yellow100;
+            public static Color Red10 => IsLightTheme ? Light.Red10 : Dark.Red10;
+            public static Color Red20 => IsLightTheme ? Light.Red20 : Dark.Red20;
+            public static Color Red30 => IsLightTheme ? Light.Red30 : Dark.Red30;
+            public static Color Red40 => IsLightTheme ? Light.Red40 : Dark.Red40;
+            public static Color Red50 => IsLightTheme ? Light.Red50 : Dark.Red50;
+            public static Color Red60 => IsLightTheme ? Light.Red60 : Dark.Red60;
+            public static Color Red70 => IsLightTheme ? Light.Red70 : Dark.Red70;
+            public static Color Red80 => IsLightTheme ? Light.Red80 : Dark.Red80;
+            public static Color Red90 => IsLightTheme ? Light.Red90 : Dark.Red90;
+            public static Color Red100 => IsLightTheme ? Light.Red100 : Dark.Red100;
+            public static Color Blue10 => IsLightTheme ? Light.Blue10 : Dark.Blue10;
+            public static Color Blue20 => IsLightTheme ? Light.Blue20 : Dark.Blue20;
+            public static Color Blue30 => IsLightTheme ? Light.Blue30 : Dark.Blue30;
+            public static Color Blue40 => IsLightTheme ? Light.Blue40 : Dark.Blue40;
+            public static Color Blue50 => IsLightTheme ? Light.Blue50 : Dark.Blue50;
+            public static Color Blue60 => IsLightTheme ? Light.Blue60 : Dark.Blue60;
+            public static Color Blue70 => IsLightTheme ? Light.Blue70 : Dark.Blue70;
+            public static Color Blue80 => IsLightTheme ? Light.Blue80 : Dark.Blue80;
+            public static Color Blue90 => IsLightTheme ? Light.Blue90 : Dark.Blue90;
+            public static Color Blue100 => IsLightTheme ? Light.Blue100 : Dark.Blue100;
+        }
+
+        public static class Semantic
+        {
+            public static class Light
+            {
+                public static Color FgBase { get; } = Colors.Global.Light.Grey100;
+                public static Color FgMuted { get; } = Colors.Global.Light.Grey60;
+                public static Color FgSubtle { get; } = Colors.Global.Light.Grey50;
+                public static Color FgLink { get; } = Colors.Global.Light.Brand60; // Assuming semantic/accent/moderate is Global.Light.Brand60
+                public static Color FgDisabled { get; } = Colors.Global.Light.Grey50;
+                public static Color FgOnContrast { get; } = Colors.Global.Light.White;
+                public static Color FgStaticDark { get; } = Colors.Global.Light.Grey100;
+                public static Color FgStaticLight { get; } = Colors.Global.Light.White;
+                public static Color FgDanger { get; } = Colors.Global.Light.Red60;
+                public static Color FgSuccess { get; } = Colors.Global.Light.Green60;
+                public static Color FgWarning { get; } = Colors.Global.Light.Yellow60;
+                public static Color FgError { get; } = Colors.Global.Light.Red60;
+                public static Color FgInfo { get; } = Colors.Global.Light.Blue60;
+                public static Color BgCanvas { get; } = Colors.Global.Light.White;
+                public static Color BgSubtle { get; } = Colors.Global.Light.Grey10;
+                public static Color BgMuted { get; } = Colors.Global.Light.Grey20;
+                public static Color BgContrast { get; } = Colors.Global.Light.Grey100;
+                public static Color BgSurface { get; } = Colors.Global.Light.White;
+                public static Color BgInteractivePrimary { get; } = Colors.Global.Light.Grey20;
+                public static Color BgInteractiveSecondary { get; } = Colors.Global.Light.Grey30;
+                public static Color BgInteractiveTertiary { get; } = Colors.Global.Light.Grey40;
+                public static Color BgSuccess { get; } = Colors.Global.Light.Green10;
+                public static Color BgSuccessContrast { get; } = Colors.Global.Light.Green60;
+                public static Color BgError { get; } = Colors.Global.Light.Red10;
+                public static Color BgErrorContrast { get; } = Colors.Global.Light.Red60;
+                public static Color BgWarning { get; } = Colors.Global.Light.Yellow10;
+                public static Color BgWarningContrast { get; } = Colors.Global.Light.Yellow30;
+                public static Color BgInfo { get; } = Colors.Global.Light.Blue10;
+                public static Color BgInfoContrast { get; } = Colors.Global.Light.Blue60;
+                public static Color BgOverlay { get; } = Color.FromArgb("#000000B3");
+                public static Color BgNotification { get; } = Colors.Global.Light.Red60;
+                public static Color BgDisabled { get; } = Colors.Global.Light.Grey30;
+                public static Color BgDangerPrimary { get; } = Colors.Global.Light.Red50;
+                public static Color BgDangerSecondary { get; } = Colors.Global.Light.Red60;
+                public static Color BgDangerTertiary { get; } = Colors.Global.Light.Red70;
+                public static Color AccentOnAccent { get; } = Colors.Global.Light.White;
+                public static Color AccentSubtle { get; } = Colors.Global.Light.Brand20;
+                public static Color AccentMuted { get; } = Colors.Global.Light.Brand30;
+                public static Color AccentDim { get; } = Colors.Global.Light.Brand40;
+                public static Color AccentModerate { get; } = Colors.Global.Light.Brand60;
+                public static Color AccentBold { get; } = Colors.Global.Light.Brand70;
+                public static Color AccentStrong { get; } = Colors.Global.Light.Brand80;
+                public static Color AccentIntense { get; } = Colors.Global.Light.Brand90;
+                public static Color BorderSubtle { get; } = Colors.Global.Light.Grey20;
+                public static Color BorderMuted { get; } = Colors.Global.Light.Grey30;
+                public static Color BorderInteractivePrimary { get; } = Colors.Global.Light.Grey30;
+                public static Color BorderContrast { get; } = Colors.Global.Light.Grey100;
+                public static Color BorderDisabled { get; } = Colors.Global.Light.Grey40;
+                public static Color BorderError { get; } = Colors.Global.Light.Red40;
+            }
+
+            public static class Dark
+            {
+                public static Color FgBase { get; } = Colors.Global.Dark.White;
+                public static Color FgMuted { get; } = Colors.Global.Dark.Grey50;
+                public static Color FgSubtle { get; } = Colors.Global.Dark.Grey60;
+                public static Color FgLink { get; } = Colors.Global.Dark.Brand60; // Assuming semantic/accent/moderate is Global.Dark.Brand60
+                public static Color FgDisabled { get; } = Colors.Global.Dark.Grey50;
+                public static Color FgOnContrast { get; } = Colors.Global.Dark.Grey100;
+                public static Color FgStaticDark { get; } = Colors.Global.Dark.Grey100;
+                public static Color FgStaticLight { get; } = Colors.Global.Dark.White;
+                public static Color FgDanger { get; } = Colors.Global.Dark.Red40;
+                public static Color FgSuccess { get; } = Colors.Global.Dark.Green40;
+                public static Color FgWarning { get; } = Colors.Global.Dark.Yellow30;
+                public static Color FgError { get; } = Colors.Global.Dark.Red40;
+                public static Color FgInfo { get; } = Colors.Global.Dark.Blue40;
+                public static Color BgCanvas { get; } = Colors.Global.Dark.Grey100;
+                public static Color BgSubtle { get; } = Colors.Global.Dark.Grey90;
+                public static Color BgMuted { get; } = Colors.Global.Dark.Grey80;
+                public static Color BgContrast { get; } = Colors.Global.Dark.White;
+                public static Color BgSurface { get; } = Colors.Global.Dark.Grey80;
+                public static Color BgInteractivePrimary { get; } = Colors.Global.Dark.Grey80;
+                public static Color BgInteractiveSecondary { get; } = Colors.Global.Dark.Grey70;
+                public static Color BgInteractiveTertiary { get; } = Colors.Global.Dark.Grey60;
+                public static Color BgSuccess { get; } = Colors.Global.Dark.Green80;
+                public static Color BgSuccessContrast { get; } = Colors.Global.Dark.Green50;
+                public static Color BgError { get; } = Colors.Global.Dark.Red80;
+                public static Color BgErrorContrast { get; } = Colors.Global.Dark.Red50;
+                public static Color BgWarning { get; } = Colors.Global.Dark.Yellow80;
+                public static Color BgWarningContrast { get; } = Colors.Global.Dark.Yellow30;
+                public static Color BgInfo { get; } = Colors.Global.Dark.Blue80;
+                public static Color BgInfoContrast { get; } = Colors.Global.Dark.Blue60;
+                public static Color BgOverlay { get; } = Color.FromArgb("#000000B3");
+                public static Color BgNotification { get; } = Colors.Global.Dark.Red60;
+                public static Color BgDisabled { get; } = Colors.Global.Dark.Grey80;
+                public static Color BgDangerPrimary { get; } = Colors.Global.Dark.Red50;
+                public static Color BgDangerSecondary { get; } = Colors.Global.Dark.Red60;
+                public static Color BgDangerTertiary { get; } = Colors.Global.Dark.Red70;
+                public static Color AccentOnAccent { get; } = Colors.Global.Dark.White;
+                public static Color AccentSubtle { get; } = Colors.Global.Dark.Brand20;
+                public static Color AccentMuted { get; } = Colors.Global.Dark.Brand30;
+                public static Color AccentDim { get; } = Colors.Global.Dark.Brand40;
+                public static Color AccentModerate { get; } = Colors.Global.Dark.Brand60;
+                public static Color AccentBold { get; } = Colors.Global.Dark.Brand70;
+                public static Color AccentStrong { get; } = Colors.Global.Dark.Brand80;
+                public static Color AccentIntense { get; } = Colors.Global.Dark.Brand90;
+                public static Color BorderSubtle { get; } = Colors.Global.Dark.Grey20;
+                public static Color BorderMuted { get; } = Colors.Global.Dark.Grey30;
+                public static Color BorderInteractivePrimary { get; } = Colors.Global.Dark.Grey30;
+                public static Color BorderContrast { get; } = Colors.Global.Dark.Grey100;
+                public static Color BorderDisabled { get; } = Colors.Global.Dark.Grey40;
+                public static Color BorderError { get; } = Colors.Global.Dark.Red40;
+            }
+
+            public static Color FgBase => IsLightTheme ? Light.FgBase : Dark.FgBase;
+            public static Color FgMuted => IsLightTheme ? Light.FgMuted : Dark.FgMuted;
+            public static Color FgSubtle => IsLightTheme ? Light.FgSubtle : Dark.FgSubtle;
+            public static Color FgLink => IsLightTheme ? Light.FgLink : Dark.FgLink;
+            public static Color FgDisabled => IsLightTheme ? Light.FgDisabled : Dark.FgDisabled;
+            public static Color FgOnContrast => IsLightTheme ? Light.FgOnContrast : Dark.FgOnContrast;
+            public static Color FgStaticDark => IsLightTheme ? Light.FgStaticDark : Dark.FgStaticDark;
+            public static Color FgStaticLight => IsLightTheme ? Light.FgStaticLight : Dark.FgStaticLight;
+            public static Color FgDanger => IsLightTheme ? Light.FgDanger : Dark.FgDanger;
+            public static Color FgSuccess => IsLightTheme ? Light.FgSuccess : Dark.FgSuccess;
+            public static Color FgWarning => IsLightTheme ? Light.FgWarning : Dark.FgWarning;
+            public static Color FgError => IsLightTheme ? Light.FgError : Dark.FgError;
+            public static Color FgInfo => IsLightTheme ? Light.FgInfo : Dark.FgInfo;
+            public static Color BgCanvas => IsLightTheme ? Light.BgCanvas : Dark.BgCanvas;
+            public static Color BgSubtle => IsLightTheme ? Light.BgSubtle : Dark.BgSubtle;
+            public static Color BgMuted => IsLightTheme ? Light.BgMuted : Dark.BgMuted;
+            public static Color BgContrast => IsLightTheme ? Light.BgContrast : Dark.BgContrast;
+            public static Color BgSurface => IsLightTheme ? Light.BgSurface : Dark.BgSurface;
+            public static Color BgInteractivePrimary => IsLightTheme ? Light.BgInteractivePrimary : Dark.BgInteractivePrimary;
+            public static Color BgInteractiveSecondary => IsLightTheme ? Light.BgInteractiveSecondary : Dark.BgInteractiveSecondary;
+            public static Color BgInteractiveTertiary => IsLightTheme ? Light.BgInteractiveTertiary : Dark.BgInteractiveTertiary;
+            public static Color BgSuccess => IsLightTheme ? Light.BgSuccess : Dark.BgSuccess;
+            public static Color BgSuccessContrast => IsLightTheme ? Light.BgSuccessContrast : Dark.BgSuccessContrast;
+            public static Color BgError => IsLightTheme ? Light.BgError : Dark.BgError;
+            public static Color BgErrorContrast => IsLightTheme ? Light.BgErrorContrast : Dark.BgErrorContrast;
+            public static Color BgWarning => IsLightTheme ? Light.BgWarning : Dark.BgWarning;
+            public static Color BgWarningContrast => IsLightTheme ? Light.BgWarningContrast : Dark.BgWarningContrast;
+            public static Color BgInfo => IsLightTheme ? Light.BgInfo : Dark.BgInfo;
+            public static Color BgInfoContrast => IsLightTheme ? Light.BgInfoContrast : Dark.BgInfoContrast;
+            public static Color BgOverlay => IsLightTheme ? Light.BgOverlay : Dark.BgOverlay;
+            public static Color BgNotification => IsLightTheme ? Light.BgNotification : Dark.BgNotification;
+            public static Color BgDisabled => IsLightTheme ? Light.BgDisabled : Dark.BgDisabled;
+            public static Color BgDangerPrimary => IsLightTheme ? Light.BgDangerPrimary : Dark.BgDangerPrimary;
+            public static Color BgDangerSecondary => IsLightTheme ? Light.BgDangerSecondary : Dark.BgDangerSecondary;
+            public static Color BgDangerTertiary => IsLightTheme ? Light.BgDangerTertiary : Dark.BgDangerTertiary;
+            public static Color AccentOnAccent => IsLightTheme ? Light.AccentOnAccent : Dark.AccentOnAccent;
+            public static Color AccentSubtle => IsLightTheme ? Light.AccentSubtle : Dark.AccentSubtle;
+            public static Color AccentMuted => IsLightTheme ? Light.AccentMuted : Dark.AccentMuted;
+            public static Color AccentDim => IsLightTheme ? Light.AccentDim : Dark.AccentDim;
+            public static Color AccentModerate => IsLightTheme ? Light.AccentModerate : Dark.AccentModerate;
+            public static Color AccentBold => IsLightTheme ? Light.AccentBold : Dark.AccentBold;
+            public static Color AccentStrong => IsLightTheme ? Light.AccentStrong : Dark.AccentStrong;
+            public static Color AccentIntense => IsLightTheme ? Light.AccentIntense : Dark.AccentIntense;
+            public static Color BorderSubtle => IsLightTheme ? Light.BorderSubtle : Dark.BorderSubtle;
+            public static Color BorderMuted => IsLightTheme ? Light.BorderMuted : Dark.BorderMuted;
+            public static Color BorderInteractivePrimary => IsLightTheme ? Light.BorderInteractivePrimary : Dark.BorderInteractivePrimary;
+            public static Color BorderContrast => IsLightTheme ? Light.BorderContrast : Dark.BorderContrast;
+            public static Color BorderDisabled => IsLightTheme ? Light.BorderDisabled : Dark.BorderDisabled;
+            public static Color BorderError => IsLightTheme ? Light.BorderError : Dark.BorderError;
+
+
+
+        }
+    }
+}
