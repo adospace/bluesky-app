@@ -16,7 +16,7 @@ class LoginPageState
 
     public bool RememberMe { get; set; } = true;
 
-    public bool IsBusy { get; set; }
+    public bool IsLoggingIn { get; set; }
 
     public bool IsInitializing { get; set; } = true;
 }
@@ -46,17 +46,24 @@ partial class LoginPage : Component<LoginPageState>
                     RenderFooter()
                 )
                 .BackgroundColor(ApplicationTheme.Colors.Semantic.BgCanvas)
-                .Opacity(State.IsBusy ? 0.1 : 1.0)
-                .IsEnabled(!State.IsBusy)
+                .Opacity(State.IsLoggingIn ? 0.1 : 1.0)
+                .IsEnabled(!State.IsLoggingIn)
                 .IsVisible(!State.IsInitializing)
                 .GridRowSpan(3),
 
-                ActivityIndicator()
-                    .Height(60)
-                    .Width(60)
-                    .GridRowSpan(3)
-                    .IsVisible(State.IsBusy || State.IsInitializing)
-                    .IsRunning(true)
+                VStack(spacing: 16,
+                    ActivityIndicator()
+                        .Height(60)
+                        .Width(60)
+                        .GridRowSpan(3)
+                        .IsVisible(State.IsLoggingIn || State.IsInitializing)
+                        .IsRunning(true),
+
+                    Label(State.IsLoggingIn ? "Logging in..." : "Initializing...")
+                        .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
+                        .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
+                )
+                .Center()
             )
         )
         .OnAppearing(Initialize);
@@ -119,13 +126,13 @@ partial class LoginPage : Component<LoginPageState>
 
     async Task Login()
     {
-        SetState(s => s.IsBusy = true);
+        SetState(s => s.IsLoggingIn = true);
 
         //await Task.Delay(12000);
 
         var result = await _blueSkyService.LoginAsync(State.Handle, State.Password, State.RememberMe);
 
-        SetState(s => s.IsBusy = false);
+        SetState(s => s.IsLoggingIn = false);
 
         if (result)
         {

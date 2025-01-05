@@ -1,4 +1,5 @@
-﻿using BlueSkyApp.Framework;
+﻿using BlueSkyApp.Components.Shared;
+using BlueSkyApp.Framework;
 using BlueSkyApp.Resources.Styles;
 using BlueSkyApp.Services;
 using CommunityToolkit.Maui.Core.Extensions;
@@ -14,8 +15,6 @@ using System.Threading.Tasks;
 
 namespace BlueSkyApp.Components.Home;
 
-record FeedViewPostModel(FeedViewPost? Post);
-
 class DiscoverPageState
 {
     public bool IsInitializing { get; set; } = true;
@@ -26,7 +25,7 @@ class DiscoverPageState
 
     public string? Cursor { get; set; }
 
-    public ObservableCollection<FeedViewPostModel> Items { get; set; } = [];
+    public ObservableCollection<(bool LoadingItem, FeedViewPost? Post)> Items { get; set; } = [];
 }
 
 partial class DiscoverPage : Component<DiscoverPageState>
@@ -38,11 +37,12 @@ partial class DiscoverPage : Component<DiscoverPageState>
     {
         return ContentPage(
             Grid(                
-                new SfPullToRefresh(                
+                new SfPullToRefresh()
+                {
                     CollectionView()
                         .ItemsSource(State.Items, RenderItem)
-                )
-                .IsRefreshing(() => State.IsRefreshing)
+                }
+                .IsRefreshing(State.IsRefreshing)
                 .OnRefreshing(RefreshList),
 
                 ActivityIndicator()
@@ -55,9 +55,9 @@ partial class DiscoverPage : Component<DiscoverPageState>
         .OnAppearing(RefreshList);
     }
 
-    Grid RenderItem(FeedViewPostModel item)
+    Grid RenderItem((bool LoadingItem, FeedViewPost? PostView) item)
     {
-        if (item.Post == null)
+        if (item.LoadingItem)
         {
             if (!State.IsRefreshingListFromBottom)
             {
@@ -76,13 +76,13 @@ partial class DiscoverPage : Component<DiscoverPageState>
             );
         }
 
-        var post = item.Post;
+        var post = item.PostView?.Post;
 
         return Grid("Auto,*,Auto", "52,*",
 
-            post.Post?.Author?.Avatar == null ? null :
+            post?.Author?.Avatar == null ? null :
             Border(
-                Image(post.Post.Author.Avatar)
+                Image(post.Author.Avatar)
                     .Aspect(Aspect.AspectFill)
             )
             .VStart()
@@ -91,33 +91,34 @@ partial class DiscoverPage : Component<DiscoverPageState>
             .Height(44)
             .StrokeCornerRadius(9999)
             .StrokeThickness(0)
-            .Margin(4),
+            .Margin(5,5,5,5),
 
             Grid("*", "Auto,*,Auto",
-                Label(post.Post?.Author?.DisplayName)
-                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelXsBold)
+                Label(post?.Author?.DisplayName)
+                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdBold)
                     .TextColor(ApplicationTheme.Colors.Semantic.FgBase),
 
-                Label(post.Post?.Author?.Handle)
+                Label(post?.Author?.Handle)
                     .LineBreakMode(LineBreakMode.CharacterWrap)
                     .Margin(3,0)
                     .MaxLines(1)
-                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelXsRegular)
+                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
                     .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
                     .GridColumn(1),
 
-                Label(post.Post?.IndexedAt)
-                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelXsRegular)
+                Label(post?.IndexedAt.ToShortDateTimeString())
+                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
                     .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
                     .GridColumn(2)
             )
             .GridColumn(1),
 
-            Label((post.Post?.Record as FishyFlip.Lexicon.App.Bsky.Feed.Post)?.Text ?? "")
-                .ThemeKey(ApplicationTheme.Selector.Typo.LabelXsRegular)
+            Label((post?.Record as FishyFlip.Lexicon.App.Bsky.Feed.Post)?.Text ?? "")
+                .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
                 .TextColor(ApplicationTheme.Colors.Semantic.FgBase)
                 .GridColumn(1)
                 .GridRow(1)
+                .Margin(0,0,0,5)
         );
     }
 
@@ -130,6 +131,23 @@ partial class DiscoverPage : Component<DiscoverPageState>
 
     async Task RefreshList(bool fullRefresh)
     {
+        if (fullRefresh && !State.IsInitializing)
+        {
+            SetState(s => s.IsRefreshing = true);
+        }
+
+        if (!await _blueSkyService.InitializeAsync())
+        {
+            SetState(s =>
+            {
+                s.IsInitializing = false;
+                s.IsRefreshing = false;
+                s.IsRefreshingListFromBottom = false;
+            });
+
+            return;
+        }
+
         var result = fullRefresh ?
             await _blueSkyService.Client.GetTimelineAsync()
             :
@@ -141,25 +159,26 @@ partial class DiscoverPage : Component<DiscoverPageState>
             {
                 s.IsInitializing = false;
                 s.IsRefreshing = false;
+                s.IsRefreshingListFromBottom = false;
                 s.Cursor = result.AsT0!.Cursor;
                 if (fullRefresh)
                 {
-                    s.Items = result.AsT0!.Feed!.Select(post => new FeedViewPostModel(post)).Concat([new FeedViewPostModel(null)]).ToObservableCollection();
+                    s.Items = result.AsT0!.Feed!.Select(post => (false, (FeedViewPost?)post)).Concat([(true, null)]).ToObservableCollection();
                 }
                 else
                 {
-                    if (s.Items.Count > 0 && s.Items[^1].Post == null)
+                    if (s.Items.Count > 0 && s.Items[^1].LoadingItem)
                     {
                         s.Items.RemoveAt(s.Items.Count - 1);
                     }
 
                     foreach (var post in result.AsT0!.Feed!)
                     {
-                        s.Items.Add(new FeedViewPostModel(post));
+                        s.Items.Add((false, (FeedViewPost?)post));
                     }
 
-                    s.Items.Add(new FeedViewPostModel(null));
-                }                    
+                    s.Items.Add((true, null));
+                }
             });
         }
         else
@@ -168,6 +187,7 @@ partial class DiscoverPage : Component<DiscoverPageState>
             {
                 s.IsInitializing = false;
                 s.IsRefreshing = false;
+                s.IsRefreshingListFromBottom = false;
             });
 
             var error = result.AsT1!;

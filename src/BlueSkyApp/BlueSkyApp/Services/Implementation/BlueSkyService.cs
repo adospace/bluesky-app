@@ -14,12 +14,17 @@ public class BlueSkyService(ISecureStorage credentialsService, ILogger<BlueSkySe
     private readonly ISecureStorage _credentialsService = credentialsService;
     private readonly ATProtocol _client = new ATProtocolBuilder().EnableAutoRenewSession(true).Build();
 
-    public bool IsLoggedIn => _client.Session != null;
+    public bool IsLoggedIn { get; private set; }
 
     public ATProtocol Client => _client;
 
     public async Task<bool> InitializeAsync()
     {
+        if (IsLoggedIn)
+        {
+            return true;
+        }
+
         var credentials_json = await _credentialsService.GetAsync("credentials");
 
         if (credentials_json != null)
@@ -30,7 +35,10 @@ public class BlueSkyService(ISecureStorage credentialsService, ILogger<BlueSkySe
                 credentials.AppPassword is not null)
             {
                 var result = await _client.AuthenticateWithPasswordResultAsync(credentials.Handle, credentials.AppPassword);
-                return result.Match(result => true, result => false);
+
+                IsLoggedIn = result.Match(result => true, result => false);
+
+                return IsLoggedIn;
             }
         }
 
@@ -41,23 +49,25 @@ public class BlueSkyService(ISecureStorage credentialsService, ILogger<BlueSkySe
     {
         var result = await _client.AuthenticateWithPasswordResultAsync(handle, appPassword);
 
-        var resultMessage = result.Match(_ => "successful", _ => $"unsuccessful ({_.StatusCode}, {_.Detail?.Error} - {_.Detail?.Message})");
+        IsLoggedIn = result.Match(result => true, result => false);
 
-        logger.LogInformation("Login attempt for {Handle} was {Success}", 
-            handle,
-            resultMessage);
-
-        if (_client.Session is not null && remember)
+        if (IsLoggedIn && remember)
         {
             var credentials_json = System.Text.Json.JsonSerializer.Serialize(new Credentials(handle, appPassword));
             await _credentialsService.SetAsync("credentials", credentials_json);
         }
 
-        if (_client.Session is null)
+        if (!IsLoggedIn)
         {
-            await AppUtils.DisplaySnackbarAsync(resultMessage);
+            var resultMessage = result.Match(_ => "successful", _ => $"unsuccessful ({_.StatusCode}, {_.Detail?.Error} - {_.Detail?.Message})");
+ 
+            logger.LogInformation("Login attempt for {Handle} was {resultMessage}", 
+                handle,
+                resultMessage);
+
+           await AppUtils.DisplaySnackbarAsync(resultMessage);
         }
 
-        return _client.Session is not null;
+        return IsLoggedIn;
     }
 }
