@@ -16,10 +16,15 @@ partial class AppShell : Component
                 Tab("Home", "home_black.png",
                     ShellContent("Discover", () => new DiscoverPage()),
                     ShellContent("Following", () => new FollowingPage())
+                ),
+                Tab("Search", "search_black.png",
+                    ShellContent("Search", ()=> new SearchPage())
                 )
             )
+            
             .FlyoutDisplayOptions(MauiControls.FlyoutDisplayOptions.AsMultipleItems)
 
-        );
+        )
+        ;
     }
 }

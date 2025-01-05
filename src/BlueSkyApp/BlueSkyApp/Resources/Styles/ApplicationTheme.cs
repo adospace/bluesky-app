@@ -32,5 +32,14 @@ partial class ApplicationTheme : Theme
 
         ActivityIndicatorStyles.Default = _ => _
             .Color(Colors.Semantic.AccentModerate);
+
+
+        ShellStyles.Default = _ => _
+            //.FlyoutIcon("menu_black.png")
+            .Set(MauiControls.Shell.ForegroundColorProperty, Colors.Semantic.FgBase)
+            .Set(MauiControls.Shell.TitleColorProperty, Colors.Semantic.FgBase)
+            .Set(MauiControls.Shell.UnselectedColorProperty, Colors.Semantic.FgSubtle)
+            .Set(MauiControls.Shell.BackgroundColorProperty, Colors.Semantic.BgCanvas)
+            ;
     }
 }

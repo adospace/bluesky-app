@@ -4,6 +4,8 @@ using MauiReactor.HotReload;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Storage;
+using ReactorData.Maui;
+using ReactorData.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +16,22 @@ namespace BlueSkyApp.Services;
 
 static class ServicesInstaller
 {
+    const string _dbPath = "bluesky.db";
+
     public static MauiAppBuilder ConfigureAppServices(this MauiAppBuilder builder)
     {
         builder.Services.AddServices();
+
+
+        builder.UseReactorData(services =>
+        {
+            services.AddReactorData(
+                connectionStringOrDatabaseName: $"Data Source={_dbPath}"//,
+                //configure: _ => _.Model<Todo>()
+                );
+        });
+
+
         return builder;
     }
 
@@ -28,5 +43,6 @@ static class ServicesInstaller
 #endif
         services.AddSingleton(sp => SecureStorage.Default);
         services.AddSingleton<IBlueSkyService, BlueSkyService>();
+
     }
 }
