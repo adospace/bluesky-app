@@ -6,6 +6,7 @@ using CommunityToolkit.Maui.Core.Extensions;
 using FishyFlip.Lexicon.App.Bsky.Feed;
 using FishyFlip.Lexicon.Fyi.Unravel.Frontpage;
 using FishyFlip.Models;
+using MauiReactor.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -42,6 +43,8 @@ partial class DiscoverPage : Component<DiscoverPageState>
                     CollectionView()
                         .ItemsSource(State.Items, RenderItem)
                 }
+                .ProgressColor(ApplicationTheme.Colors.Semantic.AccentModerate)
+                .ProgressBackground(ApplicationTheme.Colors.Semantic.BgCanvas)
                 .IsRefreshing(State.IsRefreshing)
                 .OnRefreshing(RefreshList),
 
@@ -78,7 +81,18 @@ partial class DiscoverPage : Component<DiscoverPageState>
 
         var post = item.PostView?.Post;
 
-        return Grid("Auto,*,Auto", "52,*",
+        var postRecord = post?.Record as FishyFlip.Lexicon.App.Bsky.Feed.Post;
+
+        postRecord.
+
+        return Grid("22,*,32,10,1,10", "56,*",
+
+            Button()
+                .GridRowSpan(4)
+                .GridColumnSpan(2)
+                .BackgroundColor(ApplicationTheme.Colors.Semantic.BgCanvas)
+                //.OnClicked(async () => await ContainerPage.DisplayAlert("Hello!", "ok", "cancel"))
+                ,
 
             post?.Author?.Avatar == null ? null :
             Border(
@@ -87,19 +101,21 @@ partial class DiscoverPage : Component<DiscoverPageState>
             )
             .VStart()
             .GridRowSpan(3)
-            .Width(44)
-            .Height(44)
+            .Width(40)
+            .Height(40)
             .StrokeCornerRadius(9999)
             .StrokeThickness(0)
-            .Margin(5,5,5,5),
+            .Margin(8),
 
             Grid("*", "Auto,*,Auto",
                 Label(post?.Author?.DisplayName)
-                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdBold)
+                    .LineBreakMode(LineBreakMode.TailTruncation)
+                    .FontAttributes(Microsoft.Maui.Controls.FontAttributes.Bold)
+                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
                     .TextColor(ApplicationTheme.Colors.Semantic.FgBase),
 
                 Label(post?.Author?.Handle)
-                    .LineBreakMode(LineBreakMode.CharacterWrap)
+                    .LineBreakMode(LineBreakMode.TailTruncation)
                     .Margin(3,0)
                     .MaxLines(1)
                     .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
@@ -111,6 +127,7 @@ partial class DiscoverPage : Component<DiscoverPageState>
                     .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
                     .GridColumn(2)
             )
+            .Margin(0, 0, 10, 0)
             .GridColumn(1),
 
             Label((post?.Record as FishyFlip.Lexicon.App.Bsky.Feed.Post)?.Text ?? "")
@@ -118,7 +135,61 @@ partial class DiscoverPage : Component<DiscoverPageState>
                 .TextColor(ApplicationTheme.Colors.Semantic.FgBase)
                 .GridColumn(1)
                 .GridRow(1)
-                .Margin(0,0,0,5)
+                .Margin(0,0,10,0),
+
+
+            Grid("*","22,*,22,*,22,*,*,22",
+
+                Image("reply.png")
+                    .Aspect(Aspect.AspectFit)
+                    .Height(16)
+                    .Margin(0,6,0,2),
+
+                Label(post?.ReplyCount)
+                    .VerticalTextAlignment(TextAlignment.Center)
+                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelSmRegular)
+                    .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
+                    .GridColumn(1),
+
+                Image("retweet.png")
+                    .Aspect(Aspect.AspectFit)
+                    .Height(16)
+                    .Margin(0, 6, 0, 2)
+                    .GridColumn(2),
+
+                Label(post?.RepostCount)
+                    .VerticalTextAlignment(TextAlignment.Center)
+                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelSmRegular)
+                    .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
+                    .GridColumn(3),
+
+                Image("likes.png")
+                    .Aspect(Aspect.AspectFit)
+                    .Height(16)
+                    .GridColumn(4),
+
+                Label(post?.LikeCount)
+                    .VerticalTextAlignment(TextAlignment.Center)
+                    .ThemeKey(ApplicationTheme.Selector.Typo.LabelSmRegular)
+                    .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
+                    .GridColumn(5),
+
+                Image("dots.png")
+                    .Margin(0, 6, 0, 2)
+                    .Height(16)
+                    .GridColumn(7)
+            )
+            .Margin(0, 0, 10, 0)
+            .GridRow(2)
+            .GridColumn(1)
+            .GridColumnSpan(2),
+
+            Rectangle()
+                .StrokeThickness(0)
+                .VCenter()
+                .Fill(ApplicationTheme.Colors.Semantic.BorderSubtle)
+                .GridRow(4)
+                .GridColumnSpan(2)
         );
     }
 
@@ -179,6 +250,8 @@ partial class DiscoverPage : Component<DiscoverPageState>
 
                     s.Items.Add((true, null));
                 }
+
+                //System.Diagnostics.Debug.WriteLine(System.Text.Json.JsonSerializer.Serialize(s.Items.Select(_=>_.Post)));
             });
         }
         else
