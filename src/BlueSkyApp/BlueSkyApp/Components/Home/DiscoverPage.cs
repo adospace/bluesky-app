@@ -83,7 +83,6 @@ partial class DiscoverPage : Component<DiscoverPageState>
 
         var postRecord = post?.Record as FishyFlip.Lexicon.App.Bsky.Feed.Post;
 
-        postRecord.
 
         return Grid("22,*,32,10,1,10", "56,*",
 
