@@ -6,6 +6,7 @@ using CommunityToolkit.Maui.Core.Extensions;
 using FishyFlip.Lexicon.App.Bsky.Feed;
 using FishyFlip.Lexicon.Fyi.Unravel.Frontpage;
 using FishyFlip.Models;
+using MauiReactor;
 using MauiReactor.Shapes;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace BlueSkyApp.Components.Home;
 
-class DiscoverPageState
+class DiscoverViewState
 {
     public bool IsInitializing { get; set; } = true;
 
@@ -29,22 +30,36 @@ class DiscoverPageState
     public ObservableCollection<(bool LoadingItem, FeedViewPost? Post)> Items { get; set; } = [];
 }
 
-partial class DiscoverPage : Component<DiscoverPageState>
+partial class DiscoveryView : Component<DiscoverViewState>, ISlidingViewItem
 {
     [Inject]
     IBlueSkyService _blueSkyService;
 
+    private Action<MauiControls.ItemsViewScrolledEventArgs>? _scrolled;
+    public void OnScrolled(Action<MauiControls.ItemsViewScrolledEventArgs>? action)
+    {
+        _scrolled = action;
+    }
+
+    public string Title => "Discovery";
+
+    protected override void OnMounted()
+    {
+        Task.Run(RefreshList);
+
+        base.OnMounted();
+    }
+
     public override VisualNode Render()
     {
-        return ContentPage(
-            Grid(                
-                new SfPullToRefresh()
-                {
+        return
+            Grid(
+                RefreshView(
                     CollectionView()
                         .ItemsSource(State.Items, RenderItem)
-                }
-                .ProgressColor(ApplicationTheme.Colors.Semantic.AccentModerate)
-                .ProgressBackground(ApplicationTheme.Colors.Semantic.BgCanvas)
+                        .OnScrolled(_scrolled)
+                )
+                .RefreshColor(ApplicationTheme.Colors.Semantic.AccentModerate)
                 .IsRefreshing(State.IsRefreshing)
                 .OnRefreshing(RefreshList),
 
@@ -53,9 +68,7 @@ partial class DiscoverPage : Component<DiscoverPageState>
                     .Width(60)
                     .IsVisible(State.IsInitializing)
                     .IsRunning(true)
-            )            
-        )
-        .OnAppearing(RefreshList);
+            );        
     }
 
     Grid RenderItem((bool LoadingItem, FeedViewPost? PostView) item)
@@ -115,7 +128,7 @@ partial class DiscoverPage : Component<DiscoverPageState>
 
                 Label(post?.Author?.Handle)
                     .LineBreakMode(LineBreakMode.TailTruncation)
-                    .Margin(3,0)
+                    .Margin(3, 0)
                     .MaxLines(1)
                     .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
                     .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
@@ -134,15 +147,15 @@ partial class DiscoverPage : Component<DiscoverPageState>
                 .TextColor(ApplicationTheme.Colors.Semantic.FgBase)
                 .GridColumn(1)
                 .GridRow(1)
-                .Margin(0,0,10,0),
+                .Margin(0, 0, 10, 0),
 
 
-            Grid("*","22,*,22,*,22,*,*,22",
+            Grid("*", "22,*,22,*,22,*,*,22",
 
                 Image("reply.png")
                     .Aspect(Aspect.AspectFit)
                     .Height(16)
-                    .Margin(0,6,0,2),
+                    .Margin(0, 6, 0, 2),
 
                 Label(post?.ReplyCount)
                     .VerticalTextAlignment(TextAlignment.Center)
@@ -268,3 +281,4 @@ partial class DiscoverPage : Component<DiscoverPageState>
         }
     }
 }
+

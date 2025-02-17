@@ -1,4 +1,5 @@
-﻿using BlueSkyApp.Components.Profile;
+﻿using BlueSkyApp.Components.Home;
+using BlueSkyApp.Components.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,16 @@ partial class AppWindow : Component<AppWindowState>
     public override VisualNode Render()
     {
         return Window(
-            State.LoggedIn ? 
-            new AppShell() 
-            : 
-            new LoginPage().OnLoggedIn(Login)
-            );
+            new MainPage()
+        );
+    }
+
+    ContentPage RenderFlyoutMenu()
+    {
+        return ContentPage("MauiReactor Bluesky app"
+            
+
+        );
     }
 
     void Login()

@@ -29,10 +29,6 @@ partial class LoginPage : Component<LoginPageState>
     [Inject]
     IBlueSkyService _blueSkyService;
 
-    protected override void OnMounted()
-    {
-        base.OnMounted();
-    }
 
     public override VisualNode Render()
     {

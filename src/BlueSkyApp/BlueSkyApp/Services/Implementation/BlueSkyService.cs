@@ -47,6 +47,8 @@ public class BlueSkyService(ISecureStorage credentialsService, ILogger<BlueSkySe
 
     public async Task<bool> LoginAsync(string handle, string appPassword, bool remember)
     {
+        handle = handle.Trim().TrimStart('@');
+
         var result = await _client.AuthenticateWithPasswordResultAsync(handle, appPassword);
 
         IsLoggedIn = result.Match(result => true, result => false);
