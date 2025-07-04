@@ -52,13 +52,13 @@ partial class LoginPage : Component<LoginPageState>
                         .Height(60)
                         .Width(60)
                         .GridRowSpan(3)
-                        .IsVisible(State.IsLoggingIn || State.IsInitializing)
                         .IsRunning(true),
 
                     Label(State.IsLoggingIn ? "Logging in..." : "Initializing...")
                         .ThemeKey(ApplicationTheme.Selector.Typo.LabelMdRegular)
                         .TextColor(ApplicationTheme.Colors.Semantic.FgMuted)
                 )
+                .IsVisible(State.IsLoggingIn || State.IsInitializing)
                 .Center()
             )
         )

@@ -89,7 +89,7 @@ class MainPage : Component<MainPageState>
 
 class FlyoutMenuPage : Component
 {
-    private Action<PageType> _selectAction;
+    private Action<PageType>? _selectAction;
 
     public FlyoutMenuPage OnPageSelected(Action<PageType> action)
     {
