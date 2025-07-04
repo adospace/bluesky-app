@@ -36,6 +36,7 @@ partial class DiscoveryView : Component<DiscoverViewState>, ISlidingViewItem
     IBlueSkyService _blueSkyService;
 
     private Action<MauiControls.ItemsViewScrolledEventArgs>? _scrolled;
+
     public void OnScrolled(Action<MauiControls.ItemsViewScrolledEventArgs>? action)
     {
         _scrolled = action;
@@ -103,7 +104,6 @@ partial class DiscoveryView : Component<DiscoverViewState>, ISlidingViewItem
                 .GridRowSpan(4)
                 .GridColumnSpan(2)
                 .BackgroundColor(ApplicationTheme.Colors.Semantic.BgCanvas)
-                //.OnClicked(async () => await ContainerPage.DisplayAlert("Hello!", "ok", "cancel"))
                 ,
 
             post?.Author?.Avatar == null ? null :
@@ -206,8 +206,8 @@ partial class DiscoveryView : Component<DiscoverViewState>, ISlidingViewItem
     }
 
 
-    async void RefreshListBottom()
-        => await RefreshList(false);
+    void RefreshListBottom()
+        => Task.Run(() => RefreshList(false));
 
     async Task RefreshList()
         => await RefreshList(true);

@@ -66,21 +66,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FishyFlip" Version="3.1.2" />
+		<PackageReference Include="FishyFlip" Version="3.10.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.*" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.6" />
 		<PackageReference Include="Reactor.Maui" Version="3.0.*" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ReactorData" Version="1.0.25-beta" />
-		<PackageReference Include="ReactorData.Sqlite" Version="1.0.25-beta" />
-		<PackageReference Include="ReactorData.Maui" Version="1.0.25-beta" />
+		<PackageReference Include="ReactorData" Version="1.0.29" />
+		<PackageReference Include="ReactorData.Sqlite" Version="1.0.29" />
+		<PackageReference Include="ReactorData.Maui" Version="1.0.29" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
-		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.3" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.1.0" />
+		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.5" />
 	</ItemGroup>
 
 </Project>

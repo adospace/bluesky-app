@@ -39,7 +39,9 @@ partial class SlidingView : Component<SlidingViewState>
                 .CurrentItem(()=> children[State.SelectedIndex])
                 .OnCurrentItemChanged(args => SetState(s => s.SelectedIndex = children.IndexOf((VisualNode)args.CurrentItem)))
                 .OnScrolled(OnScrolled)
+                .Loop(false)
                 .Margin(() => new Thickness(0, State.HeaderTranslateY, 0,0))
+                
                 ,
 
             Grid(
@@ -93,6 +95,7 @@ partial class SlidingView : Component<SlidingViewState>
         var headerTranslateY = Math.Max(0.0, Math.Min(State.HeaderTranslateY - args.VerticalDelta, 48.0));
         if (headerTranslateY != State.HeaderTranslateY)
         {
+            System.Diagnostics.Debug.WriteLine($"args.VerticalDelta:{args.VerticalDelta} State.HeaderTranslateY:{State.HeaderTranslateY}");
             SetState(s =>
             {
                 s.HeaderTranslateY = headerTranslateY;
